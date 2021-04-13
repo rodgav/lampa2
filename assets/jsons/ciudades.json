@@ -1,0 +1,39 @@
+{
+  "ciudades": [
+    {
+      "nombre": "Lampa",
+      "distancia": "0 Km",
+      "imagen": "https://2.bp.blogspot.com/-TnapgZknTEs/TxcYQLgA-RI/AAAAAAAAAAs/-dLNGZUGleE/s320/arco+lampa.JPG"
+    },
+    {
+      "nombre": "Azángaro",
+      "distancia": "53.8 Km",
+      "imagen": "https://turismoi.pe/uploads/city/image/20863/medium_azangaro_city.JPG"
+    },
+    {
+      "nombre": "Ayaviri",
+      "distancia": "58.77 Km",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Catedral_de_San_Francisco_de_As%C3%ADs_en_Ayaviri..JPG"
+    },
+    {
+      "nombre": "Puno",
+      "distancia": "64.4 Km",
+      "imagen": "https://www.ongvoluntariado.org/wp-content/uploads/2017/10/ciudad-de-puno-peru-voluntariado-en-peru-800x400.jpg"
+    },
+    {
+      "nombre": "Huancané",
+      "distancia": "67.4 Km",
+      "imagen": "https://turismoi.pe/uploads/city/image/20867/large_Huancane_city.jpg"
+    },
+    {
+      "nombre": "Putina",
+      "distancia": "73.24 Km",
+      "imagen": "https://www.diariosinfronteras.pe/wp-content/uploads/2020/06/PUTINA.jpg"
+    },
+    {
+      "nombre": "Moho",
+      "distancia": "92.93 Km",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Moho_Catedral.jpg/1200px-Moho_Catedral.jpg"
+    }
+  ]
+}

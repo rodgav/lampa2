@@ -1,0 +1,32 @@
+{
+  "gastronomia": [
+    {
+      "nombre": "Asado de cordero",
+      "imagen": "https://www.recetasderechupete.com/wp-content/uploads/2013/11/cordero_asado.jpg"
+    },
+    {
+      "nombre": "Lechón al horno",
+      "imagen": "https://acomer.pe/wp-content/uploads/2019/11/Lechon-perfil.jpg"
+    },
+    {
+      "nombre": "Mazamorra de quinua",
+      "imagen": "https://laperuanavegana.files.wordpress.com/2010/12/p1030090.jpg"
+    },
+    {
+      "nombre": "Pan de quinua",
+      "imagen": "https://mividaenundulce.files.wordpress.com/2019/03/dsc_2534.jpg?w=584"
+    },
+    {
+      "nombre": "T’impo de trucha",
+      "imagen": "https://img-global.cpcdn.com/recipes/77dfa6fc04e5465d/751x532cq70/timpu-de-trucha-foto-principal.jpg"
+    },
+    {
+      "nombre": "Caldo de quinua",
+      "imagen": "https://www.pcrm.org/sites/default/files/sopa-de-quinoa6.jpg"
+    },
+    {
+      "nombre": "Phasi de tunta-chuño blanco.",
+      "imagen": "https://img-global.cpcdn.com/recipes/f0ac781dad6544da/1200x630cq70/photo.jpg"
+    }
+  ]
+}
