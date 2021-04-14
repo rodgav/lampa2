@@ -5,6 +5,8 @@ import 'package:lampa2/bloc/atractivos/atractivos_bloc.dart';
 import 'package:lampa2/bloc/ciudades/ciudades_bloc.dart';
 import 'package:lampa2/bloc/distrititos/distritos_bloc.dart';
 import 'package:lampa2/bloc/gastronomia/gastronomia_bloc.dart';
+import 'package:lampa2/bloc/mapa/mapa_bloc.dart';
+import 'package:lampa2/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:lampa2/bloc/pages/pages_bloc.dart';
 import 'package:lampa2/bloc/repository.dart';
 import 'package:lampa2/helpers/zoomSlideUpTransitionBuilder.dart';
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => CiudadesBloc(repository: Repository())),
         BlocProvider(create: (_) => DistritosBloc(repository: Repository())),
         BlocProvider(create: (_) => GastronomiaBloc(repository: Repository())),
+        BlocProvider(create: (_) => MiUbicacionBloc()),
+        BlocProvider(create: (_) => MapaBloc()),
       ],
       child: MaterialApp.router(
         title: 'Ciudad de Lampa',

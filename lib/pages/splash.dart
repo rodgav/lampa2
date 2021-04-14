@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
     Size size = MediaQuery.of(context).size;
     initTimer(context);
     return Scaffold(
-        backgroundColor: Color(0xff2a3770),
+        backgroundColor: Colors.blue,
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Column(

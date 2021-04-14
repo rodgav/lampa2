@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lampa2/bloc/atractivos/atractivos_bloc.dart';
+import 'package:lampa2/bloc/ciudades/ciudades_bloc.dart';
+import 'package:lampa2/bloc/distrititos/distritos_bloc.dart';
+import 'package:lampa2/bloc/gastronomia/gastronomia_bloc.dart';
 import 'package:lampa2/bloc/pages/pages_bloc.dart';
 import 'package:lampa2/pages/ciudad.dart';
 import 'package:lampa2/pages/mapa.dart';
 import 'package:lampa2/pages/notFound.dart';
 import 'package:lampa2/widgets/responsive_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<CiudadesBloc>().add(OnCiudadesEventChange());
+    context.read<DistritosBloc>().add(OnDistritosEventChange());
+    context.read<AtractivosBloc>().add(OnAtractivosEventChange());
+    context.read<GastronomiaBloc>().add(OnGastronomiaEventChange());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
