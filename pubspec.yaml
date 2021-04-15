@@ -39,6 +39,8 @@ dependencies:
   beamer:
   url_launcher:
   cached_network_image:
+  polyline:
+  modal_bottom_sheet:
 
 
 dev_dependencies:

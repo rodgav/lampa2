@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:lampa2/bloc/atractivos/atractivos_bloc.dart';
 import 'package:lampa2/bloc/mapa/mapa_bloc.dart';
 import 'package:lampa2/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:lampa2/widgets/btn_float.dart';
@@ -44,8 +45,6 @@ class _MapaPageState extends State<MapaPage> with WidgetsBindingObserver {
       }
     }
   }
-
-  Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
@@ -147,18 +146,53 @@ class _MapaPageState extends State<MapaPage> with WidgetsBindingObserver {
     final miUbicacionBloc = context.read<MiUbicacionBloc>();
     mapaBloc.add(OnNuevaUbicacion(state.ubicacion));
 
-    final cameraPosition = CameraPosition(target: state.ubicacion, zoom: 15);
+    final cameraPosition = CameraPosition(target: state.ubicacion, zoom: 8);
 
     return Scaffold(
-        body: GoogleMap(
-          initialCameraPosition: cameraPosition,
-          zoomControlsEnabled: false,
-          myLocationEnabled: true,
-          myLocationButtonEnabled: false,
-          onMapCreated: mapaBloc.initMapa,
-          polylines: mapaBloc.state.polilynes.values.toSet(),
-          onCameraMove: (cameraPosition){
+        body: BlocBuilder<AtractivosBloc, AtractivosState>(
+          builder: (context, state) {
+            switch (state.runtimeType) {
+              case AtractivosInitial:
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              case AtractivosLoading:
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              case AtractivosLoaded:
+                final atractivos =
+                    (state as AtractivosLoaded).atractivosModel.atractivos;
+                return BlocBuilder<MapaBloc, MapaState>(
+                  builder: (_, __) {
+                    return GoogleMap(
+                      initialCameraPosition: cameraPosition,
+                      zoomControlsEnabled: false,
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: false,
+                      mapToolbarEnabled: false,
+                      onMapCreated: (GoogleMapController googleMapController) {
+                        mapaBloc.initMapa(
+                            googleMapController, atractivos, context);
+                      },
+                      polylines: mapaBloc.state.polilynes.values.toSet(),
+                      markers: mapaBloc.state.markers.toSet(),
+                      /*onCameraMove: (cameraPosition){
             mapaBloc.add(OnModioMapa(cameraPosition.target));
+          },*/
+                    );
+                  },
+                );
+              case AtractivosError:
+                final error = (state as AtractivosError).error;
+                return Center(
+                  child: Text(error),
+                );
+              default:
+                return Center(
+                  child: Text('Estado no reconocido'),
+                );
+            }
           },
         ),
         floatingActionButton: BlocBuilder<MapaBloc, MapaState>(
@@ -166,19 +200,22 @@ class _MapaPageState extends State<MapaPage> with WidgetsBindingObserver {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BtnFloat(
+                      maxRadius: 25,
                       iconData: Icons.my_location,
                       onPressed: () {
                         final destino = miUbicacionBloc.state.ubicacion;
                         mapaBloc.moverCamara(destino);
                       },
                     ),
-                    BtnFloat(
+                    /*BtnFloat(
+                      maxRadius: 25,
                       iconData: Icons.more_horiz,
                       onPressed: () {
                         mapaBloc.add(OnMarcarRecorrido());
                       },
-                    ),
+                    ),*/
                     BtnFloat(
+                      maxRadius: 25,
                       iconData: state.seguirUbicacion
                           ? Icons.directions_run
                           : Icons.accessibility_new,

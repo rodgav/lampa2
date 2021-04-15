@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lampa2/bloc/atractivo/atractivo_bloc.dart';
 import 'package:lampa2/bloc/atractivos/atractivos_bloc.dart';
 import 'package:lampa2/bloc/ciudades/ciudades_bloc.dart';
 import 'package:lampa2/bloc/distrititos/distritos_bloc.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => GastronomiaBloc(repository: Repository())),
         BlocProvider(create: (_) => MiUbicacionBloc()),
         BlocProvider(create: (_) => MapaBloc()),
+        BlocProvider(create: (_) => AtractivoBloc()),
       ],
       child: MaterialApp.router(
         title: 'Ciudad de Lampa',
