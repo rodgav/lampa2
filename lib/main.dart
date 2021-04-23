@@ -13,8 +13,8 @@ import 'package:lampa2/bloc/repository.dart';
 import 'package:lampa2/helpers/zoomSlideUpTransitionBuilder.dart';
 import 'package:lampa2/locations/home.dart';
 import 'package:lampa2/locations/splash.dart';
+import 'package:lampa2/locations/acesso_gps.dart';
 import 'package:lampa2/pages/notFound.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -48,9 +48,10 @@ class MyApp extends StatelessWidget {
           locationBuilder: (state) {
             if (state.uri.pathSegments.contains('splash')) {
               return SplashLocation(state);
-            }
-            if (state.uri.pathSegments.contains('home')) {
+            } else if (state.uri.pathSegments.contains('home')) {
               return HomeLocation(state);
+            } else if (state.uri.pathSegments.contains('accesogps')) {
+              return AccesoGpsLocation(state);
             }
             return SplashLocation(state);
           },

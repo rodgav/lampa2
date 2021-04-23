@@ -35,19 +35,21 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
   void initMapa(GoogleMapController controller, List<Atractivos> atractivos,
       BuildContext context) {
-    if (!state.mapaListo) {
       this._googleMapController = controller;
 
-      this._googleMapController.setMapStyle(jsonEncode(MapTheme));
+      //this._googleMapController.setMapStyle(jsonEncode(MapTheme));
 
       add(OnMapaListo());
       add(OnCrearMarkers(atractivos, context));
-    }
   }
 
   void moverCamara(LatLng destino) {
     final cameraUpdate = CameraUpdate.newLatLng(destino);
     this._googleMapController?.animateCamera(cameraUpdate);
+  }
+
+  void dispose() {
+    this._googleMapController.dispose();
   }
 
   @override

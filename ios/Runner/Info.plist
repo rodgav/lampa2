@@ -55,5 +55,12 @@
     <string>Older devices need location.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Can I have location always?</string>
+
+    <!-- Permission wikitude -->
+     <key>NSPhotoLibraryAddUsageDescription</key>
+     <string>write photos</string>
+     <key>NSPhotoLibraryUsageDescription</key>
+     <string>write and read photos</string>
+
 </dict>
 </plist>

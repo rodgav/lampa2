@@ -25,7 +25,7 @@ class MiUbicacionBloc extends Bloc<MiUbicacionEvent, MiUbicacionState> {
   }
 
   void cancelarSeguimiento() {
-    this._positionSubscription?.cancel();
+      this._positionSubscription?.cancel();
   }
 
   @override

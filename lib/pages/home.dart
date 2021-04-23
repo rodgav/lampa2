@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,9 @@ import 'package:lampa2/bloc/atractivos/atractivos_bloc.dart';
 import 'package:lampa2/bloc/ciudades/ciudades_bloc.dart';
 import 'package:lampa2/bloc/distrititos/distritos_bloc.dart';
 import 'package:lampa2/bloc/gastronomia/gastronomia_bloc.dart';
+import 'package:lampa2/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:lampa2/bloc/pages/pages_bloc.dart';
+import 'package:lampa2/pages/camara.dart';
 import 'package:lampa2/pages/ciudad.dart';
 import 'package:lampa2/pages/mapa.dart';
 import 'package:lampa2/pages/notFound.dart';
@@ -19,11 +22,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    context.read<MiUbicacionBloc>().iniciarSeguimiento();
     context.read<CiudadesBloc>().add(OnCiudadesEventChange());
     context.read<DistritosBloc>().add(OnDistritosEventChange());
     context.read<AtractivosBloc>().add(OnAtractivosEventChange());
     context.read<GastronomiaBloc>().add(OnGastronomiaEventChange());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    context.read<MiUbicacionBloc>().cancelarSeguimiento();
+    super.dispose();
   }
 
   @override
@@ -43,21 +53,27 @@ class _HomePageState extends State<HomePage> {
                         ? MapaPage(web: true)
                         : state.page == 'mapa'
                             ? MapaPage(web: true)
-                            : NotFoundPage(),
+                            : state.page == 'camara' && !kIsWeb
+                                ? CamaraPage(web: true)
+                                : NotFoundPage(),
                 mediumScreen: state.page == 'ciudad'
                     ? CiudadPage(web: true)
                     : state.page == 'mapa'
                         ? MapaPage(web: true)
                         : state.page == 'mapa'
                             ? MapaPage(web: true)
-                            : NotFoundPage(),
+                            : state.page == 'camara' && !kIsWeb
+                                ? CamaraPage(web: true)
+                                : NotFoundPage(),
                 smallScreen: state.page == 'ciudad'
                     ? CiudadPage(web: false)
                     : state.page == 'mapa'
                         ? MapaPage(web: false)
                         : state.page == 'mapa'
                             ? MapaPage(web: false)
-                            : NotFoundPage(),
+                            : state.page == 'camara' && !kIsWeb
+                                ? CamaraPage(web: true)
+                                : NotFoundPage(),
               );
             }),
           ),
@@ -142,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                             height: 3,
                           ),
                           Text(
-                            'Camara',
+                            'AR',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
