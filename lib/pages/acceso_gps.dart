@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart' as geo;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:beamer/beamer.dart';
 
@@ -56,10 +56,10 @@ class _AccesoGpsPageState extends State<AccesoGpsPage>
               splashColor: Colors.transparent,
               onPressed: () async {
                 if (kIsWeb) {
-                  await Geolocator.requestPermission();
-                  final permisoGPSweb = await Geolocator.checkPermission();
-                  if (permisoGPSweb == LocationPermission.always ||
-                      permisoGPSweb == LocationPermission.whileInUse) {
+                  await geo.Geolocator.requestPermission();
+                  final permisoGPSweb = await geo.Geolocator.checkPermission();
+                  if (permisoGPSweb == geo.LocationPermission.always ||
+                      permisoGPSweb == geo.LocationPermission.whileInUse) {
                     context.beamToNamed('/home/mapa');
                   } else {
                     setState(() {

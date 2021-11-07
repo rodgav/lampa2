@@ -6,13 +6,12 @@ import 'package:lampa2/pages/notFound.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeLocation extends BeamLocation {
-  HomeLocation(BeamState state) : super(state);
 
   @override
   List<String> get pathBlueprints => ['/home/:name'];
 
   @override
-  List<BeamPage> pagesBuilder(BuildContext context, BeamState state) {
+  List<BeamPage> pagesBuilder(BuildContext context) {
     final name = state.pathParameters['name'] ?? '';
     context.read<PagesBloc>().cambiarPageSubPage(name);
     return [

@@ -585,11 +585,6 @@ class CiudadPage extends StatelessWidget {
       if (await canLaunch(url)) {
         await launch(url);
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('URL no encontrada'),
-        duration: const Duration(seconds: 5),
-      ));
     }
   }
 }

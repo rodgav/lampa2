@@ -15,6 +15,7 @@ import 'package:lampa2/locations/home.dart';
 import 'package:lampa2/locations/splash.dart';
 import 'package:lampa2/locations/acesso_gps.dart';
 import 'package:lampa2/pages/notFound.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -45,17 +46,12 @@ class MyApp extends StatelessWidget {
           }),
         ),
         routerDelegate: BeamerRouterDelegate(
-          locationBuilder: (state) {
-            if (state.uri.pathSegments.contains('splash')) {
-              return SplashLocation(state);
-            } else if (state.uri.pathSegments.contains('home')) {
-              return HomeLocation(state);
-            } else if (state.uri.pathSegments.contains('accesogps')) {
-              return AccesoGpsLocation(state);
-            }
-            return SplashLocation(state);
-          },
           notFoundPage: notFoundPage,
+          beamLocations: [
+            SplashLocation(),
+            HomeLocation(),
+            AccesoGpsLocation()
+          ],
         ),
         routeInformationParser: BeamerRouteInformationParser(),
       ),
